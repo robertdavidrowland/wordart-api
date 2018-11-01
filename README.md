@@ -47,10 +47,14 @@ to bring these issues up with us, work around them, or fix them.
 
 
 29.10.2018 - 0.5 hours
-Skim over problem (read README)
-Download and test imagemagick
-Fail at getting CLI to run on windows
+Skim over problem (read README), Download and test imagemagick, Fail at getting CLI to run on windows
 
 31.10.2018 - 0.5 hours
-Prep debian linux server on AWS
-Succeed at getting CLI to run on Windows
+Prep debian linux server on AWS, Succeed at getting CLI to run on Windows
+
+01.11.2018 - 4 hours
+Fix Generator to run on windows, Add simple tests for generator, 
+Spring MVC controller and tests, Unbreak generator on windows, 
+And some more unbreaking(!), Unbreak it on linux, 
+Test minimal API locally and on debian
+

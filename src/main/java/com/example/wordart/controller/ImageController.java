@@ -1,40 +1,33 @@
 package com.example.wordart.controller;
 
+import com.example.wordart.gen.Generator;
+import com.example.wordart.gen.ImageMagickGenerator;
+import com.example.wordart.gen.Job;
 import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.ServletContext;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.EnumSet;
 
 @RestController
 public class ImageController {
 
-    private static final Logger log = LoggerFactory.getLogger(ImageController.class);
+    @RequestMapping(value = "/image", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] getImageAsByteArray(@RequestParam("text") String text) throws IOException {
 
-    @Autowired
-    ServletContext servletContext;
+        Generator generator = new ImageMagickGenerator();
 
-    @RequestMapping(value = "/image-byte-array", method = RequestMethod.GET)
-    public byte[] getImageAsByteArray() throws IOException {
-        InputStream in = servletContext.getResourceAsStream("resources/foo.png");
-        return IOUtils.toByteArray(in);
-    }
+        EnumSet<Job.Effect> effects = EnumSet.of(Job.Effect.SHADOW_REFLECT);
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test() throws IOException {
-        InputStream in = servletContext.getResourceAsStream("/WEB-INF/foo.png");
+        Job job = new Job(Job.Format.PNG, text, effects, Job.Colour.BLACK, Job.Font.FREE_MONO);
 
-        log.debug("in: {}", in);
+        InputStream image = generator.generateImage(job);
 
-        if (in == null) {
-            return "WTF 2: " + servletContext.getContextPath();
-        }
-        return String.valueOf(in.available());
+        return IOUtils.toByteArray(image);
     }
 }
