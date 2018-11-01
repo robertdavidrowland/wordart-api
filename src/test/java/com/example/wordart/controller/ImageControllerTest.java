@@ -27,7 +27,14 @@ public class ImageControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void goodRequest_shouldReturnImage() throws Exception {
+    public void noText() throws Exception {
+        this.mockMvc.perform(
+                get("/image"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void defaultImage() throws Exception {
         MvcResult result = this.mockMvc.perform(
                 get("/image?text=foo"))
                 .andExpect(status().isOk())
@@ -41,9 +48,65 @@ public class ImageControllerTest {
     }
 
     @Test
-    public void noText_shouldReturn400() throws Exception {
+    public void format() throws Exception {
+        MvcResult result = this.mockMvc.perform(
+                get("/image?text=foo&format=JPEG"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("image/jpeg"))
+                .andReturn();
+
+        byte[] contentBytes = result.getResponse().getContentAsByteArray();
+        Long contentLength = (long) contentBytes.length;
+
+        assertThat(contentLength, equalTo(2096L));
+    }
+
+    @Test
+    public void effect() throws Exception {
+        MvcResult result = this.mockMvc.perform(
+                get("/image?text=foo&effect=OUTLINE"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("image/png"))
+                .andReturn();
+
+        byte[] contentBytes = result.getResponse().getContentAsByteArray();
+        Long contentLength = (long) contentBytes.length;
+
+        assertThat(contentLength, equalTo(1478L));
+    }
+
+    @Test
+    public void multipleEffects() throws Exception {
+        MvcResult result = this.mockMvc.perform(
+                get("/image?text=foo&effect=OUTLINE&effect=GRADIENT"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("image/png"))
+                .andReturn();
+
+        byte[] contentBytes = result.getResponse().getContentAsByteArray();
+        Long contentLength = (long) contentBytes.length;
+
+        assertThat(contentLength, equalTo(2784L));
+    }
+
+    @Test
+    public void colour() throws Exception {
+        MvcResult result = this.mockMvc.perform(
+                get("/image?text=foo&colour=RED"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("image/png"))
+                .andReturn();
+
+        byte[] contentBytes = result.getResponse().getContentAsByteArray();
+        Long contentLength = (long) contentBytes.length;
+
+        assertThat(contentLength, equalTo(4890L));
+    }
+
+    @Test
+    public void badFont() throws Exception {
         this.mockMvc.perform(
-                get("/image"))
+                get("/image?text=foo&font=ARIAL"))
                 .andExpect(status().isBadRequest());
     }
 }
