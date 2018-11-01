@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>wordart-api</artifactId>
+    <artifactId>wordart</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>wordart-api</name>
+    <name>wordart</name>
     <description>Web API for Word Art Generator</description>
 
     <properties>

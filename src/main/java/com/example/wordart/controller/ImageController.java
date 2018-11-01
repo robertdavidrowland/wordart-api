@@ -1,4 +1,4 @@
-package com.example.wordart.gen.wordartapi.controller;
+package com.example.wordart.controller;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
