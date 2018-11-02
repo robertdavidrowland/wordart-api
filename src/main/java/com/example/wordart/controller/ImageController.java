@@ -47,11 +47,9 @@ public class ImageController {
             case JPEG:
                 responseHeaders.add(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_JPEG_VALUE);
                 break;
-            case TIFF:
-                responseHeaders.add(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_GIF_VALUE);
-                break;
             default:
-                responseHeaders.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE);
+                responseHeaders.add(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_PNG_VALUE);
+                format = Job.Format.PNG;
         }
 
         Generator generator = new ImageMagickGenerator();
@@ -61,6 +59,5 @@ public class ImageController {
         InputStream image = generator.generateImage(job);
 
         return new ResponseEntity<>(IOUtils.toByteArray(image), responseHeaders, HttpStatus.OK);
-
     }
 }
