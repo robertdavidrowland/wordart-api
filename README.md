@@ -45,6 +45,34 @@ One of our engineers was having a bad day while making major contributions to
 this application.  There might be a few broken bits along the way.  Feel free
 to bring these issues up with us, work around them, or fix them.
 
+# Solution
+
+Simple RPC like API /image with parameters i.e.
+
+http://localhost:8080/image/?text=Grovey%20Baby!&format=JPEG&colour=RED&effect=OUTLINE&effect=GRADIENT&effect=SHADOW_REFLECT
+
+Parameters are:
+
+text - the text to be rendered.
+format - can be be PNG, JPEG, TIFF or ASCII.  If ommitted or set to TIFF or ASCII it will default to PNG
+effects - one or more effects can be SHADOW_HARD, SHADOW_REFLECT, GRADIENT or OUTLINE
+colour - one of RED, GREEN, BLUE, BLACK, GREY and WHITE
+font - only FREE_MONO accepted
+
+# Usage
+
+```
+> mvn package
+> java -jar target/wordart-1.0-SNAPSHOT.jar
+```
+
+This will compile the API and have it listening on port 8080.  i.e.
+
+```
+http://localhost:8080/image/?text=Grovey%20Baby!&format=JPEG&colour=RED&effect=OUTLINE&effect=GRADIENT&effect=SHADOW_REFLECT
+```
+
+If you have problem compiling check the path to your ImageMagick binary in src/main/resources/application.properties
 
 29.10.2018 - 0.5 hours
 Skim over problem (read README), Download and test imagemagick, Fail at getting CLI to run on windows
@@ -59,3 +87,5 @@ And some more unbreaking(!), Unbreak it on linux,
 Test minimal API locally and on debian
 First pass at full API
 
+02.11.2018 - 1 hour
+Tidy up and add notes to README.md
