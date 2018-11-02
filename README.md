@@ -47,26 +47,26 @@ to bring these issues up with us, work around them, or fix them.
 
 # Solution
 
-Simple RPC like API /image with parameters i.e.
+This is a simple RPC like API with a single /image endpoint.  
 
-http://localhost:8080/image/?text=Grovey%20Baby!&format=JPEG&colour=RED&effect=OUTLINE&effect=GRADIENT&effect=SHADOW_REFLECT
+Parameters are set by query string:
 
-Parameters are:
-
-text - the text to be rendered.
-format - can be be PNG, JPEG, TIFF or ASCII.  If ommitted or set to TIFF or ASCII it will default to PNG
-effects - one or more effects can be SHADOW_HARD, SHADOW_REFLECT, GRADIENT or OUTLINE
-colour - one of RED, GREEN, BLUE, BLACK, GREY and WHITE
-font - only FREE_MONO accepted
+- text - the text to be rendered.
+- format - can be be PNG, JPEG, TIFF or ASCII.  If ommitted or set to TIFF or ASCII it will default to PNG
+- effects - one or more effects can be SHADOW_HARD, SHADOW_REFLECT, GRADIENT or OUTLINE
+- colour - one of RED, GREEN, BLUE, BLACK, GREY and WHITE
+- font - only FREE_MONO accepted
 
 # Usage
+
+To compiile and run:
 
 ```
 > mvn package
 > java -jar target/wordart-1.0-SNAPSHOT.jar
 ```
 
-This will compile the API and have it listening on port 8080.  i.e.
+Example use:
 
 ```
 http://localhost:8080/image/?text=Grovey%20Baby!&format=JPEG&colour=RED&effect=OUTLINE&effect=GRADIENT&effect=SHADOW_REFLECT
@@ -74,18 +74,23 @@ http://localhost:8080/image/?text=Grovey%20Baby!&format=JPEG&colour=RED&effect=O
 
 If you have problem compiling check the path to your ImageMagick binary in src/main/resources/application.properties
 
+Timesheet
+
 29.10.2018 - 0.5 hours
-Skim over problem (read README), Download and test imagemagick, Fail at getting CLI to run on windows
+- Skim over problem (read README)
+- Download and test imagemagick
+- Fail at getting CLI to run on windows
 
 31.10.2018 - 0.5 hours
-Prep debian linux server on AWS, Succeed at getting CLI to run on Windows
+- Prep debian linux server on AWS
+- Succeed at getting CLI to run on Windows
 
 01.11.2018 - 5 hours
-Fix Generator to run on windows, Add simple tests for generator, 
-Spring MVC controller and tests, Unbreak generator on windows, 
-And some more unbreaking(!), Unbreak it on linux, 
-Test minimal API locally and on debian
-First pass at full API
+- Fix Generator to run on windows, Add simple tests for generator
+- Spring MVC controller and tests, Unbreak generator on windows
+- And some more unbreaking(!), Unbreak it on linux
+- Test minimal API locally and on debian
+- First pass at full API
 
 02.11.2018 - 1 hour
-Tidy up and add notes to README.md
+- Tidy up and add notes to README.md
