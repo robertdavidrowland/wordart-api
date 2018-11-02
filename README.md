@@ -47,7 +47,8 @@ to bring these issues up with us, work around them, or fix them.
 
 # Solution
 
-This is a simple RPC like API with a single /image endpoint.  
+This has been set up as Spring Boot application built with Maven.  It serves a simple 
+API with a single /image endpoint.  
 
 Parameters are set by query string:
 
@@ -74,7 +75,7 @@ http://localhost:8080/image/?text=Grovey%20Baby!&format=JPEG&colour=RED&effect=O
 
 If you have problem compiling check the path to your ImageMagick binary in src/main/resources/application.properties
 
-Timesheet
+# Timesheet
 
 29.10.2018 - 0.5 hours
 - Skim over problem (read README)
