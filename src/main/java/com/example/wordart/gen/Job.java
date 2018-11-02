@@ -9,6 +9,7 @@ public class Job {
     private EnumSet<Effect> effects;
     private Colour fontColour;
     private Font font;
+
     /**
      * Create a new job specification
      *
